@@ -239,7 +239,7 @@ int PoseOptimization(SENSOR s, const cv::Mat& P2, cv::Mat& pointbuf, Mat initial
     //Threshold from the Chi2 distribution
     const float chi2Mono[4]={5.991,5.991,5.991,5.991};
     const float chi2Stereo[4]={7.815,7.815,7.815, 7.815};
-    const int its[4]={1,30,50,15000000};// 四次迭代，每次迭代的次数
+    const int its[4]={1,30,50,15000000};
 
     int nBad=0;
     for(size_t it=0; it<4; it++)
@@ -318,7 +318,7 @@ cout<<"Error of node "<<i<<": "<<chi2<<endl;
     g2o::VertexSE3Expmap* vSE3_recov = static_cast<g2o::VertexSE3Expmap*>(optimizer.vertex(0));
     g2o::SE3Quat SE3quat_recov = vSE3_recov->estimate();
     cv::Mat pose = Converter::toCvMat(SE3quat_recov);
-    if(pose.empty())cout <<"shit"<<endl;
+    if(pose.empty())cout <<"Result Not Available!"<<endl;
     else
     cout<<"Optimized Pose: "<<pose<<endl;
 //    cout<<"cross product: "<<pose.colRange(1,1)<<endl;
