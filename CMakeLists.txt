@@ -48,7 +48,7 @@ ENDIF(UNIX)
 # For building the CHOLMOD / CSPARSE solvers
 FIND_PACKAGE(BLAS)
 FIND_PACKAGE(LAPACK)
-find_package(OpenCV 3.1.0 REQUIRED)
+find_package(OpenCV REQUIRED)
 
 # Eigen library parallelise itself, though, presumably due to performance issues
 # OPENMP is experimental. We experienced some slowdown with it
