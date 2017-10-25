@@ -1,6 +1,6 @@
-#Pose Optimization Using G2O Library: an Easy Example
+# Pose Optimization Using G2O Library: an Easy Example
 
-##A small sample for pose optimization using g2o to minimize reprojection errors.
+## A small sample for pose optimization using g2o to minimize reprojection errors.
 
 ### Usage:
 
