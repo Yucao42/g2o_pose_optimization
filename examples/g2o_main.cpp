@@ -1,19 +1,24 @@
-//#include "include/Converter.h"
-#include"../include/Optimizer.h"
+// Uncomment this if you have compiled opencv with VIZ module
+// #def VIZ
+
 #include <iostream>
 #include <opencv2/core/opengl.hpp>
-#include "opencv2/opencv.hpp"
-#include "opencv2/viz.hpp"
-#include "opencv2/features2d.hpp"
-#include "opencv2/xfeatures2d.hpp"
 #include <string>
 #include <vector>
 #include <algorithm>
 #include <numeric>
+#include "opencv2/opencv.hpp"
+#include "../include/Optimizer.h"
+#ifdef VIZ
+#include "opencv2/viz.hpp"
+#endif
+#include "opencv2/features2d.hpp"
 
 using namespace std;
 using namespace cv;
+#ifdef VIZ
 using namespace cv::viz;
+#endif
 
 std::string intrinsic_filename = "../data/zed_final/intrinsics.yml";
 std::string extrinsic_filename = "../data/zed_final/extrinsics.yml";
@@ -83,6 +88,7 @@ int main(){
     cout<<"PnP Pose: "<<Guess.rowRange(1,2)<<endl;
               
     // Create the pointcloud
+#ifdef VIZ
     std::vector<cv::Vec3d> point_cloud;
     int row =-1;
     for (int i = 0; i < 49; ++i) {
@@ -127,6 +133,7 @@ int main(){
     myWindow.showWidget("cloud", cloud_widget);
     myWindow.showWidget("cameras_frames_and_lines_est", viz::WTrajectory(path_est, viz::WTrajectory::PATH, 1.0, viz::Color::green()));
     myWindow.spin();
+#endif
 
     return 0;
 }
